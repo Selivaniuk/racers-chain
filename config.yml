@@ -1,21 +1,52 @@
 version: 1
 accounts:
-- name: alice
-  coins:
-  - 20000token
-  - 200000000stake
-- name: bob
-  coins:
-  - 10000token
-  - 100000000stake
+  - name: alice
+    coins:
+      - 1000000000racer
+  - name: bob
+    coins:
+      - 10000racer
 client:
   openapi:
     path: docs/static/openapi.yml
-faucet:
-  name: bob
-  coins:
-  - 5token
-  - 100000stake
 validators:
-- name: alice
-  bonded: 100000000stake
+  - name: alice
+    bonded: 100000000racer
+    app:
+      api:
+        address: ":1320"
+      grpc:
+        address: ":9096"
+      grpc-web:
+        address: ":9097"
+    config:
+      p2p:
+        laddr: ":26665"
+      rpc:
+        laddr: ":26666"
+        pprof_laddr: ":6063"
+
+genesis:
+  app_state:
+    staking:
+      params:
+        bond_denom: racer
+    bank:
+      denom_metadata:
+        - name: racer
+          symbol: RACER
+          description: The native staking token of the Axinomix Racer Network.
+          denom_units:
+            - denom: uracer
+              exponent: 0
+              aliases:
+                - microracer
+            - denom: mracer
+              exponent: 3
+              aliases:
+                - milliracer
+            - denom: racer
+              exponent: 6
+          base: uracer
+          display: racer
+

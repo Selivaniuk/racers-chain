@@ -1,0 +1,12 @@
+syntax = "proto3";
+package racerschain.racerschain;
+
+import "gogoproto/gogo.proto";
+import "racerschain/racerschain/params.proto";
+
+option go_package = "racers-chain/x/racerschain/types";
+
+// GenesisState defines the racerschain module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+}
